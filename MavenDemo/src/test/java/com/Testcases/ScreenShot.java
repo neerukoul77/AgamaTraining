@@ -24,7 +24,7 @@ public class ScreenShot {
 		driver.get("https://opensource-demo.orangehrmlive.com/");
 		TakesScreenshot ts =(TakesScreenshot)driver;
 	    File source = ts.getScreenshotAs(OutputType.FILE);
-	    FileUtils.copyFile(source,new File(("src/test/resources/screenshots/screenimages1.png")));
+	    FileUtils.copyFile(source,new File(("src/test/resources/screenimages1.png")));
 
 		System.out.println(driver.getTitle());
 		driver.close();

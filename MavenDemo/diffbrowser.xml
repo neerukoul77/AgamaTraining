@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="2" parallel="classes" name="Suite">
+  <test name="TestOnFacebook">
+  <parameter name ="browserName" value = "facebook"></parameter>
+    <classes>
+      <class name="com.TestNG.DifferentBrowsers"/>
+    </classes>
+  </test>
+  
+  <test name="TestOnGmail">
+  <parameter name ="browserName" value = "orangeHRM"></parameter>
+    <classes>
+      <class name="com.TestNG.DifferentBrowsers"/>
+    </classes>
+  </test>
+</suite> <!-- Suite -->

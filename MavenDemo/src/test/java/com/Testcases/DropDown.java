@@ -1,36 +1,45 @@
+//Navigating Drop Down menu
 package com.Testcases;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DropDown {
 
-	public static void main(String[] args) throws IOException {
-		//System.setProperty("Webdriver.chrome.driver", "C:\\Neeru\\selenium-java-3.141.59\\chromedriver.exe");
-		WebDriverManager.chromedriver().setup();
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);//for each line it will wait for 30sec and then execute
-		driver.get("https://www.facebook.com/");
-		//driver.navigate().to("https://www.google.com/");//navigate.to(url address/name)
-		//driver.navigate().back();
-		//driver.navigate().forward();
-		TakesScreenshot ts =(TakesScreenshot)driver;
-	       File source = ts.getScreenshotAs(OutputType.FILE);
-	       FileUtils.copyFile(source,new File(("src/test/resources/screenshots/screenimages.png")));
+		public static void main(String[] args) throws IOException, InterruptedException {
+			WebDriverManager.chromedriver().setup();
+			WebDriver driver = new ChromeDriver();
+			driver.manage().window().maximize();
 
-		System.out.println(driver.getTitle());
-		//driver.close();
-		driver.quit();
+			driver.get("https://opensource-demo.orangehrmlive.com/");
+			driver.findElement(By.xpath("//*[contains(@id,'txt')]")).sendKeys("Admin");
+			driver.findElement(By.id("txtPassword")).sendKeys("admin123");
+			driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div[2]/div[2]/form/div[5]/input")).click();
+			
+			driver.findElement(By.xpath("//*[@id=\'menu_admin_viewAdminModule\']")).click();
+			Select userRole = new Select(driver.findElement(By.xpath("//*[@id=\"searchSystemUser_userType\"]")));
+			userRole.selectByVisibleText("ESS");
+			driver.findElement(By.id("searchSystemUser_employeeName_empName")).sendKeys("Neeru");
+			
+			Thread.sleep(1000);
+			
+			Select status = new Select(driver.findElement(By.xpath("//*[@id=\"searchSystemUser_status\"]")));
+			//status.selectByIndex(2);
+			//status.selectByValue("selected");
+			status.selectByValue("1");
+			
+			
+			Thread.sleep(1000);
+
+			System.out.println(driver.getTitle());
+			//driver.close();
+			driver.quit();
 	}
 
 }

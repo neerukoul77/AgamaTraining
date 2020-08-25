@@ -13,6 +13,8 @@ public class MouseHandling {
 	public static void main(String[] args) throws InterruptedException {
 		WebDriverManager.chromedriver().setup();
 		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+
 		driver.get("https://opensource-demo.orangehrmlive.com/");
 		driver.findElement(By.xpath("//*[contains(@id,'txt')]")).sendKeys("Admin");
 		driver.findElement(By.id("txtPassword")).sendKeys("admin123");
@@ -27,6 +29,8 @@ public class MouseHandling {
 		Thread.sleep(1000);
 		action.moveToElement(qualification).perform();
 		action.moveToElement(languages).click().build().perform();
+		
+		
  
 	
 		
